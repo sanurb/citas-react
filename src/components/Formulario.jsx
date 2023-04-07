@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Error from './Error'
 
 export const Formulario = () => {
   const [pet, setPet] = useState("");
@@ -7,11 +8,18 @@ export const Formulario = () => {
   const [date, setDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
 
+  const [error, setError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Sending");
-    // Validar el formulario
 
+    // Validar el formulario
+    if ( [pet, owner, email, date,  symptoms ].includes('')) {
+      setError(true);
+      return;
+    }
+
+    setError(false)
     // Crear el objeto de paciente
 
     // Crear el paciente
@@ -32,6 +40,7 @@ export const Formulario = () => {
         className="bg-white shadow-md rounded-lg py-10 px-5"
         onSubmit={handleSubmit}
       >
+        { error &&  <Error><p>All fields are required</p></Error>}
         <div className="mb-5">
           <label
             className="block text-gray-700 uppercase font-bold"
