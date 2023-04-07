@@ -1,71 +1,117 @@
-import {useState} from "react";
+import { useState } from "react";
 
 export const Formulario = () => {
+  const [pet, setPet] = useState("");
+  const [owner, setOwner] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Sending");
+    // Validar el formulario
+
+    // Crear el objeto de paciente
+
+    // Crear el paciente
+
+    // Reiniciar el form
+  };
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
-      <h2 className="font-black text-stone-700 text-3xl text-center">
-        Formulario
-      </h2>
+      <h2 className="font-black text-stone-700 text-3xl text-center">Form</h2>
 
       <p className="text-lg mt-5 text-center mb-10">
-        Añade Pacientes y {""}
-        <span className="text-indigo-600 font-bold ">Administralos</span>
+        Add Patients and {""}
+        <span className="text-indigo-600 font-bold ">Manage them</span>
       </p>
 
-      <form className="bg-white shadow-md rounded-lg py-10 px-5">
+      <form
+        className="bg-white shadow-md rounded-lg py-10 px-5"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-5">
           <label
             className="block text-gray-700 uppercase font-bold"
-            htmlFor="mascota"
+            htmlFor="pet_name"
           >
-            Nombre Mascota
+            Pet Name
           </label>
           <input
-            id="mascota"
+            id="pet_name"
             type="text"
-            placeholder="Nombre de la Mascota"
+            placeholder="Pet Name"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-          />
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="propietario"
-            className="block text-gray-700 uppercase font-bold"
-          >
-            Nombre Propietario
-          </label>
-          <input
-            id="propietario"
-            type="text"
-            placeholder="Nombre del Propietario"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-          />
-        </div>
-        <div className="mb-5">
-          <label
-            htmlFor="alta"
-            className="block text-gray-700 uppercase font-bold"
-          >
-            Alta
-          </label>
-          <input
-            id="alta"
-            type="date"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={pet}
+            onChange={(e) => setPet(e.target.value)}
           />
         </div>
 
         <div className="mb-5">
           <label
-            htmlFor="sintomas"
+            htmlFor="owner"
             className="block text-gray-700 uppercase font-bold"
           >
-            Síntomas
+            Owner's name
+          </label>
+          <input
+            id="owner"
+            type="text"
+            placeholder="Nombre del owner"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={owner}
+            onChange={(e) => setOwner(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-5">
+          <label
+            htmlFor="email"
+            className="block text-gray-700 uppercase font-bold"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Email Contact Owner"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-5">
+          <label
+            htmlFor="date_discharged"
+            className="block text-gray-700 uppercase font-bold"
+          >
+            Date Discharged
+          </label>
+          <input
+            id="date_discharged"
+            type="date"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-5">
+          <label
+            htmlFor="symptoms"
+            className="block text-gray-700 uppercase font-bold"
+          >
+            Symptoms
           </label>
           <textarea
-            id="sintomas"
+            id="symptoms"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los Síntomas"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
           />
         </div>
 

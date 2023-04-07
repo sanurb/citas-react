@@ -9,11 +9,13 @@ export default function ListadoPacientes({
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       {pacientes && pacientes.length ? (
         <>
-          <h2 className="font-black text-3xl text-center text-stone-700 ">Listado Pacientes</h2>
+          <h2 className="font-black text-3xl text-center text-stone-700 ">
+            Patient List
+          </h2>
           <p className="text-xl mt-5 mb-10 text-center">
-            Administra tus {""}
+            Manage your {""}
             <span className="text-indigo-600 font-bold ">
-              Pacientes y Citas
+              Patients and Appointments
             </span>
           </p>
 
@@ -28,11 +30,13 @@ export default function ListadoPacientes({
         </>
       ) : (
         <>
-          <h2 className="font-black text-3xl text-center text-stone-700 ">No hay pacientes</h2>
+          <h2 className="font-black text-3xl text-center text-stone-700 ">
+            No patients
+          </h2>
           <p className="text-xl mt-5 mb-10 text-center">
-            Comienza agregando pacientes {""}
+            Start adding patients {""}
             <span className="text-indigo-600 font-bold ">
-              y aparecerán en este lugar
+              and will appear in this place
             </span>
           </p>
         </>
