@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Error from './Error'
 
-export const Formulario = () => {
+export const Formulario = ({ patients, setPatients }) => {
   const [pet, setPet] = useState("");
   const [owner, setOwner] = useState("");
   const [email, setEmail] = useState("");
@@ -21,10 +21,21 @@ export const Formulario = () => {
 
     setError(false)
     // Crear el objeto de paciente
-
+    const objPatients = {
+      pet,
+      owner,
+      email,
+      date,
+      symptoms,
+    };
     // Crear el paciente
-
+    setPatients([...patients, objPatients]);
     // Reiniciar el form
+    setPet("");
+    setOwner("");
+    setEmail("");
+    setDate("");
+    setSymptoms("");
   };
 
   return (
