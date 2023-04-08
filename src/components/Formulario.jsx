@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Error from './Error'
 
-export const Formulario = ({ patients, setPatients }) => {
+export const Formulario = ({ patients, setPatients, patient, setPatient }) => {
   const [pet, setPet] = useState("");
   const [owner, setOwner] = useState("");
   const [email, setEmail] = useState("");
@@ -9,6 +9,22 @@ export const Formulario = ({ patients, setPatients }) => {
   const [symptoms, setSymptoms] = useState("");
 
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (patient) {
+      setPet(patient.pet);
+      setOwner(patient.owner);
+      setEmail(patient.email);
+      setDate(patient.date);
+      setSymptoms(patient.symptoms);
+    }
+  }, [patient]);
+
+  const generateId = () => {
+    const random = Math.random().toString(36).slice(2);
+    const date =  Date.now().toString(36);
+    return random + date;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,10 +42,22 @@ export const Formulario = ({ patients, setPatients }) => {
       owner,
       email,
       date,
-      symptoms,
+      symptoms
     };
-    // Crear el paciente
-    setPatients([...patients, objPatients]);
+
+    if(patient.id){
+      // Editando el registro
+      objPatients.id = patient.id;
+      const patientsUpdated = patients.map((patientState) => patientState.id === patient.id ? objPatients : patientState);
+
+      setPatients(patientsUpdated);
+      setPatient({});
+    } else {
+      // Creando el registro
+      objPatients.id = generateId();
+      setPatients([...patients, objPatients]);
+    }
+
     // Reiniciar el form
     setPet("");
     setOwner("");
@@ -137,7 +165,8 @@ export const Formulario = ({ patients, setPatients }) => {
 
         <input
           type="submit"
-          className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
+          className="px-4 py-2 bg-indigo-500 outline-none rounded text-white shadow-indigo-200 shadow-lg font-bold active:shadow-none active:scale-95 hover:bg-indigo-600 focus:bg-indigo-600 focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 disabled:bg-gray-400/80 disabled:shadow-none disabled:cursor-not-allowed transition-colors duration-200 w-full uppercase"
+          value={ patient.id ? 'Edit Patient' : 'Add Patient' }
         />
       </form>
     </div>

@@ -1,13 +1,13 @@
-import Paciente from "./Paciente"
+import Paciente from "./Paciente";
 
 export default function ListadoPacientes({
-  pacientes,
-  setPaciente,
-  eliminarPaciente,
+  patients,
+  setPatient,
+  deletePatient,
 }) {
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
-      {pacientes && pacientes.length ? (
+      {patients && patients.length ? (
         <>
           <h2 className="font-black text-3xl text-center text-stone-700 ">
             Patient List
@@ -19,13 +19,12 @@ export default function ListadoPacientes({
             </span>
           </p>
 
-          {pacientes.map((paciente) => (
-            <Paciente
-              key={paciente.id}
-              paciente={paciente}
-              setPaciente={setPaciente}
-              eliminarPaciente={eliminarPaciente}
-            />
+          {patients.map((patient) => (
+            <Paciente 
+              key={patient.id}
+              patient={patient} 
+              setPatient={setPatient}
+              deletePatient={deletePatient}/>
           ))}
         </>
       ) : (
